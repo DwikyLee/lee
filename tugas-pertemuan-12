@@ -1,0 +1,50 @@
+satuan = ['', ' one', ' two', ' three', ' four', ' five', ' six', ' seven', ' eight', ' nine']
+
+def terbilang(n):
+    if n < 10:
+        return satuan[n]
+    elif n >= 1000000000:
+        return terbilang(n // 1000000000) + " billion" + terbilang(n % 1000000000)
+    elif n >= 1000000:
+        return terbilang(n // 1000000) + " million" + terbilang(n % 1000000)
+    elif n >= 1000:
+        return terbilang(n // 1000) + " thousand" + terbilang(n % 1000)           
+    elif n >= 100:
+        return terbilang(n // 100) + " hundred" + terbilang(n % 100)       
+    elif n >= 20:
+        if n//10 == 2:
+            return ' twenty' + terbilang(n % 10)
+        elif n//10 == 3:
+            return ' thirty' + terbilang(n % 10)
+        elif n//10 == 4:
+            return ' forty' + terbilang(n % 10)
+        elif n//10 == 5:
+            return ' fifty' + terbilang(n % 10)
+        else:
+            return terbilang(n//10) + ("ty"if n//10 != 8 else "y") + terbilang(n % 10)            
+    else:
+        if n in [10, 11, 12, 13, 15, 18]:
+            if  n == 10:
+                return ' ten'
+            elif n == 11:
+                return ' eleven'
+            elif n == 12:
+                return ' twelve'
+            elif n == 13:
+                return ' thirteen'
+            elif n == 15:
+                return ' fifteen'
+            else:
+                return ' eighteen'    
+        else:
+            return terbilang(n % 10) + 'teen'
+# test
+import os
+while True:
+    os.system('cls')
+    try:
+        n = int(input('number ? '))
+        print(f'{n:,} = {terbilang(n)}')
+    except:
+        print("^.. c'mon give me numbers")
+    os.system('pause')
